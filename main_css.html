@@ -1,0 +1,254 @@
+  <style>
+    /* ================= GENERAL ================= */
+    body {
+      background: #f0f2f5;
+      color: #333;
+      overflow: hidden;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .wrapper {
+      display: flex;
+      flex-direction: row;
+      height: 100vh;
+      position: relative;
+    }
+    @media (max-width: 768px) {
+      .wrapper {
+        flex-direction: column;
+      }
+    }
+
+    /* ================= DARK MODE ================= */
+    .dark-mode {
+      background: #121212;
+      color: #e0e0e0;
+    }
+    .dark-mode .card-data,
+    .dark-mode .sidebar,
+    .dark-mode .bottom-menu,
+    .dark-mode .login-form-side {
+      background-color: #333;
+      color: white;
+    }
+    .dark-mode .sidebar a,
+    .dark-mode .bottom-menu a,
+    .dark-mode .toggle-btn {
+      color: white;
+    }
+    .dark-mode .sidebar a:hover,
+    .dark-mode .bottom-menu a:hover {
+      background-color: #444;
+    }
+    .dark-mode .btn-login,
+    .dark-mode .btn-login:hover {
+      background-color: #007bff;
+      color: white;
+    }
+    .dark-mode .btn-login:hover {
+      background-color: #0056b3;
+    }
+    .dark-mode .bottom-menu {
+      background: #2c2f36;
+      border-top: 1px solid #444;
+      box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.6);
+    }
+    .dark-mode .bottom-menu a.active::after {
+      background-color: #4da3ff;
+    }
+    .dark-mode .login-form-side .form-label {
+      color: #ddd;
+    }
+
+    /* ================= SIDEBAR ================= */
+    .sidebar {
+      width: 250px;
+      height: 100%;
+      background-color: #3a3f47;
+      color: white;
+      transition: width 0.3s;
+    }
+    .sidebar.collapsed {
+      width: 60px;
+    }
+    .sidebar a {
+      display: flex;
+      align-items: center;
+      padding: 12px 20px;
+      color: white;
+      text-decoration: none;
+      transition: background-color 0.3s;
+    }
+    .sidebar a:hover,
+    .sidebar a.active {
+      background-color: #444;
+    }
+    .sidebar i {
+      margin-right: 10px;
+      min-width: 20px;
+      text-align: center;
+    }
+    .sidebar.collapsed a span {
+      display: none;
+    }
+    @media (max-width: 768px) {
+      .sidebar,
+      .toggle-btn {
+        display: none !important;
+      }
+    }
+
+    /* ================= MAIN CONTENT ================= */
+    .main-content {
+      flex: 1;
+      padding: 20px;
+      height: 100vh;
+      overflow: hidden;
+      transition: margin-left 0.3s;
+    }
+    @media (max-width: 768px) {
+      .main-content {
+        overflow-y: auto;
+        padding-top: 60px;
+      }
+    }
+
+    /* ================= TOGGLE BUTTON ================= */
+    .toggle-btn {
+      background: none;
+      border: none;
+      font-size: 24px;
+      transition: color 0.3s;
+    }
+    @media (max-width: 768px) {
+      .toggle-btn {
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        z-index: 1100;
+      }
+    }
+
+    /* ================= LOGIN CARD ================= */
+    .data-container {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .card-data {
+      padding: 2rem;
+      border-radius: 1rem;
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
+      height: 100%;
+    }
+
+    .login-form-side {
+      background-color: #f8f9fa;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    /* ================= DARK MODE TOGGLE BUTTON ================= */
+    .btn-dark-mode {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #333;
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      z-index: 1002;
+    }
+    @media (max-width: 768px) {
+      .btn-dark-mode {
+        bottom: 100px;
+      }
+    }
+    .btn-dark-mode:hover {
+      background-color: #444;
+      transform: scale(1.05);
+    }
+    .btn-dark-mode i {
+      font-size: 1.2rem;
+    }
+
+    /* ================= USER INFO ================= */
+    #userInfo {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      font-size: 1rem;
+      z-index: 999;
+    }
+    #userInfo span {
+      font-weight: bold;
+    }
+
+    /* ================= CONTENT AREA ================= */
+    #contentArea {
+      height: 100%;
+      overflow-y: auto;
+      padding-bottom: 40px;
+    }
+
+    /* ================= BOTTOM MENU ================= */
+    .bottom-menu {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 65px;
+      background: #fff;
+      border-top: 1px solid #ddd;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      z-index: 1001;
+      box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
+      padding: 0 10px;
+      border-radius: 16px 16px 0 0;
+      transition: background-color 0.3s, box-shadow 0.3s;
+    }
+    .bottom-menu a {
+      flex: 1;
+      text-align: center;
+      text-decoration: none;
+      color: #555;
+      font-size: 12px;
+      padding-top: 6px;
+      transition: all 0.2s;
+      position: relative;
+    }
+    .bottom-menu a i {
+      display: block;
+      font-size: 20px;
+      margin-bottom: 4px;
+      transition: transform 0.3s;
+    }
+    .bottom-menu a:hover i,
+    .bottom-menu a.active i {
+      transform: scale(1.2);
+      color: #ff4d4d;
+    }
+    .bottom-menu a:hover,
+    .bottom-menu a.active {
+      color: #ff4d4d;
+    }
+    .bottom-menu a::after {
+      content: '';
+      display: block;
+      width: 6px;
+      height: 6px;
+      margin: 4px auto 0;
+      border-radius: 50%;
+      background-color: transparent;
+      transition: background-color 0.3s;
+    }
+    .bottom-menu a.active::after {
+      background-color: #ff4d4d;
+    }
+  </style>
