@@ -1,133 +1,64 @@
-//halaman login
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dashboard Login</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login - Dashboard App</title>
 
-<!-- FontAwesome -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+  <!-- FontAwesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
 
-<!-- SweetAlert2 -->
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <!-- SweetAlert2 -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-<!-- Bootstrap 5.3 -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet" />
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Bootstrap -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-  <?!= include('main_css'); ?>
-
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="main.css" />
 </head>
+<body style="background: linear-gradient(135deg, #74ebd5 0%, #ACB6E5 100%);">
 
-<body>
-
-  <!-- LOGIN PAGE -->
   <div class="container" id="loginPage">
     <div class="row justify-content-center align-items-center min-vh-100">
-      <div class="col-12 col-md-10 col-lg-8">
-        <div class="card shadow-lg border-0 rounded-4 overflow-hidden">
-
-          <!-- MOBILE IMAGE -->
-          <div class="d-block d-md-none text-center p-4">
-            <img src="https://images.unsplash.com/photo-1571260899304-425eee4c7efc?auto=format&fit=crop&w=600&q=80"
-              alt="Login" class="rounded-circle shadow border border-5 border-white" 
-              style="width: 200px; height: 200px; object-fit: cover;" />
-          </div>
-
+      <div class="col-12 col-md-8 col-lg-6">
+        <div class="card shadow-lg border-0 rounded-5 overflow-hidden bg-white">
           <div class="row g-0">
-            <!-- DESKTOP IMAGE -->
+            <!-- Left Image -->
             <div class="col-md-6 d-none d-md-block">
               <img src="https://images.unsplash.com/photo-1571260899304-425eee4c7efc?auto=format&fit=crop&w=600&q=80"
-                alt="Login" class="img-fluid h-100 w-100" style="object-fit: cover;" />
+                   alt="Login" class="img-fluid h-100 w-100" style="object-fit: cover;">
             </div>
-
-            <!-- FORM SIDE -->
-            <div class="col-md-6 px-4 py-5 login-form-side">
-              <div class="d-flex flex-column justify-content-center h-100">
-                <h3 class="text-center mb-4 fw-bold">Welcome Back!</h3>
-                <form id="loginForm">
-                  <div class="mb-4">
-                    <label for="username" class="form-label">Username</label>
-                    <input type="text" id="username" class="form-control rounded-pill px-4 py-2">
+            <!-- Right Form -->
+            <div class="col-md-6 p-5 d-flex flex-column justify-content-center">
+              <h3 class="mb-4 text-center fw-bold">Welcome Back</h3>
+              <form id="loginForm">
+                <div class="mb-3 position-relative">
+                  <label for="username" class="form-label">Username</label>
+                  <div class="input-group">
+                    <span class="input-group-text bg-light"><i class="fa fa-user"></i></span>
+                    <input type="text" id="username" class="form-control rounded-end" placeholder="Enter username">
                   </div>
-                  <div class="mb-4" style="margin-top: -1rem;">
-                    <label for="password" class="form-label">Password</label>
-                    <input type="password" id="password" class="form-control rounded-pill px-4 py-2">
+                </div>
+                <div class="mb-4 position-relative">
+                  <label for="password" class="form-label">Password</label>
+                  <div class="input-group">
+                    <span class="input-group-text bg-light"><i class="fa fa-lock"></i></span>
+                    <input type="password" id="password" class="form-control rounded-end" placeholder="Enter password">
                   </div>
-                  <button type="submit" class="btn btn-primary w-100 rounded-pill py-2 fw-semibold shadow-sm">Login</button>
-                </form>
-              </div>
+                </div>
+                <button type="submit" class="btn btn-primary w-100 py-2 fw-semibold shadow-sm rounded-pill">Login</button>
+              </form>
+              <p class="mt-4 text-center text-muted" style="font-size: 0.9rem;">
+                Don't have an account? <a href="#">Sign up</a>
+              </p>
             </div>
           </div>
-
         </div>
       </div>
     </div>
   </div>
 
-  <!-- MAIN APP -->
-  <div id="mainApp" style="display:none;">
-    <div class="wrapper">
-      <div class="sidebar" id="sidebar"></div>
-      <div class="main-content">
-        <button class="toggle-btn" onclick="toggleSidebar()">
-          <i class="fas fa-bars"></i>
-        </button>
-        <div id="userInfo">
-          <span id="userName"></span>
-        </div>
-        <div id="contentArea"></div>
-      </div>
-    </div>
-    <div class="bottom-menu d-md-none" id="bottomMenu"></div>
-  </div>
-
-  <!-- Dark Mode Button -->
-  <button class="btn-dark-mode" onclick="toggleDarkMode()">
-    <i class="fas fa-moon"></i>
-  </button>
-  <div class="wrapper">
-  <!-- Sidebar -->
-  <div class="sidebar">
-    <div style="padding: 20px; display: flex; align-items: center;">
-      <img src="https://via.placeholder.com/40" alt="User" style="border-radius: 50%; margin-right: 10px;">
-      <span>Hakko Bio Richard</span>
-    </div>
-  </div>
-
-  <!-- Main Content -->
-  <div class="main-content" style="padding: 0;">
-    <!-- Topbar -->
-    <div style="background-color: #00a65a; color: white; padding: 10px 20px; display: flex; align-items: center; justify-content: space-between;">
-      <div style="display: flex; align-items: center;">
-        <button class="toggle-btn" onclick="toggleSidebar()" style="color: white;">☰</button>
-        <span style="font-weight: bold; margin-left: 10px;">HAKKO <span style="font-weight: 300;">BLOGS APP</span></span>
-      </div>
-      <div style="display: flex; align-items: center;">
-        <span style="margin-right: 10px;">Hakko Bio Richard</span>
-        <img src="https://via.placeholder.com/32" alt="Profile" style="border-radius: 50%;">
-        <i class="fa fa-cog" style="margin-left: 10px; cursor: pointer;"></i>
-      </div>
-    </div>
-
-    <!-- Breadcrumb -->
-    <div style="background-color: #f4f6f9; padding: 15px 20px; border-bottom: 1px solid #ddd;">
-      <h4 style="margin: 0;">Dashboard <small style="color: #888; font-weight: normal;">Control panel</small></h4>
-      <div style="font-size: 0.9rem; color: #666; margin-top: 5px;">
-        <i class="fa fa-home"></i> Home &gt; Dashboard
-      </div>
-    </div>
-
-    <!-- Content Area -->
-    <div id="contentArea" style="padding: 20px;">
-      <!-- Isi konten dashboard kamu di sini -->
-    </div>
-  </div>
-</div>
-
- <link rel="stylesheet" href="main.css">
-<script src="main.css"></script>
 </body>
 </html>
-
